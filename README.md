@@ -1,5 +1,7 @@
 # Codeprinter
-Terminal application to convert code files to .tex files
+Terminal application to convert code files to .tex files. Output is a new directory named 'latex' with
+each code-file corresponding to a subdirectory. Each subdirectory has a `.tex` file since compiling such
+files produces a number of auxillary files.
 
 ## Requirements
 * `pdflatex`
