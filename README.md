@@ -13,9 +13,7 @@ files produces a number of auxillary files.
 3. `python3 codeprinter.py`
 
 ## Future Improvements
-* Pass command line argument to directory
 * line break at specified character count
-* Compile to pdf
 * Config file support
 * Number of subdirectory count
 * Excluded folders
