@@ -2,6 +2,7 @@ from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import LatexFormatter 
 import os
+import subprocess
 
 def CodeToTex(file, root):
     """Function takes in file text as string
@@ -29,14 +30,18 @@ def CodeToTex(file, root):
          texcomments = False,
          mathescape = False
          )
-    fileIn = open(root + file, 'r')
-    code = fileIn.read()
+    with open(root + file, 'r') as f:
+        code = f.read()
     name = file.split(".")[0]
     outDir = root + "latex/" + name + "/"
     os.makedirs(outDir)
-    fileOut = open(outDir + f"{name}" + ".tex", 'w')
-    output = highlight(code, lexer, formatter, fileOut) 
-    #print(f"Name: {file}, \t  Root: {root}")
+    with open(outDir + f"{name}" + ".tex", 'w') as fileOut:
+        output = highlight(code, lexer, formatter, fileOut) 
+        #print(f"Name: {file}, \t  Root: {root}")
+        subprocess.call(["pdflatex", "-interaction=nonstopmode", "-output-directory", f"{outDir}", f"{outDir}{name}.tex"])
+        print(f"{outDir}{name}.tex")
+
+
 
 
 path = r'/Users/mellamine/Documents/muon-sim/' # Enter name of directory with files; absolute file path
